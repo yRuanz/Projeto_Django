@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+    HOTEL SENAI
+{% endblock %}
+
+{% block body %}
+
+   <ul>
+        {% for item in hotel_hotel %}
+        <li>
+            <img src="{{item.logo.url}}" alt="Logo">
+        </li>    
+        {% endfor %}
+   </ul> 
+
+{% endblock %}
