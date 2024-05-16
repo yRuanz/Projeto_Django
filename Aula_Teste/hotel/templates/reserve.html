@@ -6,19 +6,19 @@ Reserve Já
 {% endblock %}
 
 {% block body %}
-<div class="container mt-4">
+<div class="container mt-4" >
     <div class="row">
         {% for item in dados_quarto %}	
         <div class="col-md-6 mb-4">
-            <div class="card" style="height: 540px; width: 600px; margin: 20px; padding: 10px">
+            <div class="card" style="height: 540px; width: 500px; margin: 10px; padding: 10px">
                 <div style="display: flex; justify-content: center;">
-                    <img src="{{ item.foto_quarto.url }}" style="width: 500px; height: 300px; " alt="logo">
+                    <img src="{{ item.foto_quarto.url }}" style="width: 450px; height: 300px; " alt="logo">
                 </div>               
                 <div class="card-body">
                     <h5 class="card-title">{{ item.tipo }}</h5>
                     <p class="card-text">{{ item.descricao }}</p>
                     <p class="card-text">Disponibilidade: {{ item.disponibilidade }}</p>
-                    <p class="card-text">R$ {{ item.valor }}</p>
+                    <p class="card-text">Preço: R${{ item.valor }}</p>
                 </div>
             </div>
         </div>

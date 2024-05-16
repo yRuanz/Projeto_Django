@@ -21,7 +21,7 @@ class quarto(models.Model):
     tipo = models.CharField(max_length=15, choices=TIPOS_QUARTOS)
     disponibilidade = models.IntegerField()
     valor = models.FloatField(max_length=4)
-    descricao = models.TextField(max_length=255)
+    descricao = models.TextField(max_length=230)
     foto_quarto = models.ImageField(upload_to="Foto_Quarto/")
 
     def __str__(self):
@@ -29,6 +29,7 @@ class quarto(models.Model):
 
 class Usuario(models.Model):
     nome = models.CharField(max_length=100)
-    sobrenome = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
-    telefone = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.nome
