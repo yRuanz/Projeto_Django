@@ -18,7 +18,7 @@ Reserve Já
                 <div class="carousel-item {% if forloop.first %}active{% endif %}">
                     <img src="{{ item.foto_quarto.url }}" class="d-block w-100" style="height: 580px;" alt="{{ item.tipo }}">
                     <div class="carousel-caption d-none d-md-block rounded-5 px-3" style="background-color:rgba(0, 0, 0, 0.365);"">
-                        <h5>{{ item.tipo }}</h5>
+                        <a href="reserva" style="text-decoration: none; color: white;"><h5>{{ item.tipo }}</h5></a>
                         <p>{{ item.descricao }}</p>
                         <p>Disponibilidade: {{ item.disponibilidade }}</p>
                         <p>Preço: R${{ item.valor }}</p>

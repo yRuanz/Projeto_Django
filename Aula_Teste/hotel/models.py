@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 
@@ -35,7 +36,7 @@ class Usuario(models.Model):
         return self.nome
 
 class Reserva_quarto(models.Model):
-    nome = models.CharField(max_length=50)
+    user = models.CharField(max_length=50)
     email = models.EmailField(max_length=50)
     idade = models.IntegerField()
     data = models.DateField(default=timezone.now)

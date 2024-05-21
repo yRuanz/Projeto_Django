@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse
 from .models import hotel, quarto, Usuario
-from .forms import FormNome, FormCadastro, FormLogin
+from .forms import FormNome, FormCadastro, FormLogin, FormReserva
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 
@@ -90,5 +90,4 @@ def reserva(request):
             return render(request, "reserva.html")
     else:
         form = FormReserva()
-
-        return render(request, "reserva.html", {"form": form})
+        return HttpResponse("<h1>Reserva realizada com sucesso!</h1>")
