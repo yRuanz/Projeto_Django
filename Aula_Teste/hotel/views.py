@@ -90,4 +90,4 @@ def reserva(request):
             return render(request, "reserva.html")
     else:
         form = FormReserva()
-        return HttpResponse("<h1>Reserva realizada com sucesso!</h1>")
+        return render(request, "reserva_sucesso.html")
