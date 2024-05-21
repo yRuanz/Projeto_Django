@@ -36,24 +36,20 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container flex">
+    <div class="flex container pb-5">
         <div class="row justify-content-center mt-5">
             <div class="col-lg-6">
                 <div class="bg-dark p-3 rounded-3 mb-5">
-                    <h2 class="text-center text-white">Cadastre-se</h2>
-                    <form action="nome" method="post">
+                    <h2 class="text-center text-white">Login</h2>
+                    <form action="login" method="post">
                         {% csrf_token %}
                         <div class="mb-2">
-                            <label for="id_nome" class="text-white">Nome:</label>
-                            {{ form.nome }}
+                            <label for="id_user" class="text-white">Usuário:</label>
+                            {{ form.user }}
                         </div>
                         <div class="mb-2">
-                            <label for="id_email">E-mail:</label>
-                            {{ form.email }} 
-                        </div>
-                        <div class="mb-2">
-                            <label for="id_email">Senha:</label>
-                            {{ form.senha }} 
+                            <label for="id_senha">Senha:</label>
+                            {{ form.password }} 
                         </div>
                         <button type="submit" class="bg-secondary">Cadastrar</button>
                     </form>

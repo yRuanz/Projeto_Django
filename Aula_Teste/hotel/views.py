@@ -1,6 +1,8 @@
 from django.shortcuts import render, HttpResponse
 from .models import hotel, quarto, Usuario
-from .forms import FormNome
+from .forms import FormNome, FormCadastro, FormLogin
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 
  # Create your views here.
 def homepage(request):
@@ -21,15 +23,59 @@ def nome(request):
         if form.is_valid():
             var_nome = form.cleaned_data['nome']
             var_email = form.cleaned_data['email']
+            var_senha = form.cleaned_data['senha']
 
-            user = Usuario(nome=var_nome, email=var_email)
+            user = Usuario(nome=var_nome, email=var_email, senha=var_senha)
             user.save()
-
-            print(var_nome)
-            print(var_email)
 
             return HttpResponse("<h1>thanks</h1>")
     else:
         form = FormNome()
 
         return render(request, "nome.html", {"form": form})
+
+def cadastro(request):
+    if request.method == "POST":
+        form = FormCadastro(request.POST)
+        if form.is_valid():
+
+            var_first_name = form.cleaned_data['first_name']
+            var_last_name = form.cleaned_data['last_name']
+            var_user = form.cleaned_data['user']
+            var_email = form.cleaned_data['email']
+            var_password = form.cleaned_data['password']         
+
+            user = User.objects.create_user(username=var_user,email=var_email,password=var_password)
+            user.first_name = var_first_name
+            user.last_name = var_last_name
+            user.save()
+
+            return HttpResponse("<h1>thanks</h1>")
+    else:
+        form = FormCadastro()
+
+        return render(request, "cadastro.html", {"form": form})
+
+def login(request):
+    if request.method == "POST":
+        form = FormLogin(request.POST)
+        if form.is_valid():
+
+            var_user = form.cleaned_data['user']
+            var_password = form.cleaned_data['password']         
+
+            user = authenticate(username=var_user, password=var_password)
+            if user is not None:
+                return HttpResponse("<h1>Login realizado</h1>")
+            else:
+                return HttpResponse("<h1>Usuário ou senha inválida</h1>")
+    else:
+        form = FormLogin()
+
+        return render(request, "login.html", {"form": form})   
+
+def reserva(request):
+    if not request.user.is_authenticated:
+        return render(request,"login.html",{"form": forms})
+    else:
+        return HttpResponse("<h1>RESERVA DE QUARTO</h1>")
