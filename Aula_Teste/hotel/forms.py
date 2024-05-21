@@ -16,3 +16,10 @@ class FormCadastro(forms.Form):
 class FormLogin(forms.Form):
     user = forms.CharField(label="Usuário", max_length=20)
     password = forms.CharField(label="Senha",widget=forms.PasswordInput())
+
+class FormReserva(forms.Form):
+    nome = forms.CharField(label='Nome', max_length=20)
+    email = forms.EmailField(label='Email', max_length=50)
+    idade = forms.IntegerField(label='Idade')
+    data = forms.DateField(label='Data', widget=forms.DateInput(attrs={'type': 'date'}))
+    quarto = forms.ModelChoiceField(label='Quarto', queryset=quarto.objects.filter(id__in=[1, 2, 3, 4]))

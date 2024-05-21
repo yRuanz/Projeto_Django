@@ -33,3 +33,10 @@ class Usuario(models.Model):
 
     def __str__(self):
         return self.nome
+
+class Reserva_quarto(models.Model):
+    nome = models.CharField(max_length=50)
+    email = models.EmailField(max_length=50)
+    idade = models.IntegerField()
+    data = models.DateField(default=timezone.now)
+    quarto = models.CharField(max_length=50)

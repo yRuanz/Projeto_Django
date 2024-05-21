@@ -11,11 +11,11 @@ def homepage(request):
     context["dados_hotel"] = dados_hotel
     return render(request, 'homepage.html', context)
 
-def reserve(request):
+def quartos(request):
     context = {}
     dados_quarto = quarto.objects.all()
     context['dados_quarto'] = dados_quarto
-    return render(request, 'reserve.html', context)
+    return render(request, 'quartos.html', context)
 
 def nome(request):
     if request.method == "POST":
@@ -75,7 +75,20 @@ def login(request):
         return render(request, "login.html", {"form": form})   
 
 def reserva(request):
-    if not request.user.is_authenticated:
-        return render(request,"login.html",{"form": forms})
+    if request.method == "POST":
+        form = FormReserva(request.POST)
+        if form.is_valid():
+            var_nome = form.cleaned_data['nome']
+            var_email = form.cleaned_data['email']
+            var_idade = form.cleaned_data['idade']
+            var_data = form.cleaned_data['data']
+            var_quarto = form.cleaned_data['quarto']
+
+            reservar_quarto = Reserva_quarto(nome=var_nome, email=var_email, idade=var_idade, data=var_data, quarto=var_quarto)
+            reservar_quarto.save()
+
+            return render(request, "reserva.html")
     else:
-        return HttpResponse("<h1>RESERVA DE QUARTO</h1>")
+        form = FormReserva()
+
+        return render(request, "reserva.html", {"form": form})
